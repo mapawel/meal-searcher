@@ -1,0 +1,250 @@
+@import reset
+
+@mixin beforeAfter()
+    content: ''
+    display: block
+    position: absolute
+
+$light-txt-and-bg: #fff6eb
+$grey-txt: #38342f
+$grey-shadow: #888682
+$dark-txt: #161514
+$col-acc: #009efa
+
+
+\:root
+    font-size: 15px
+
+h1
+    font-size: 3em
+    text-transform: uppercase
+    line-height: 1.1
+    letter-spacing: .1em
+
+h2
+    position: relative
+    display: inline-block
+    left: 50%
+    transform: translateX(-50%)
+    z-index: 0
+    margin-bottom: 10px    
+    font-size: 2.4em
+    color: $grey-txt
+    text-transform: uppercase
+    line-height: 1
+    text-align: center
+    letter-spacing: .05em
+    text-shadow: -1px 2px 2px $grey-shadow
+    &::before
+        @include beforeAfter()
+        width: 100%
+        height: 100%
+        top: 0
+        left: 0
+        z-index: -1
+        background-image: linear-gradient(90deg, rgba(255,246,235,1) 0%, rgba(0,158,250,0) 10%, rgba(0,158,250,0) 90%, rgba(255,246,235,1) 100%), linear-gradient(0deg, rgba(223,193,34,0) 5%, rgba(0,158,250,.4) 25%, rgba(223,193,34,0) 70%),
+
+h3
+    font-size: 2em
+    font-weight: 300
+    text-transform: uppercase
+    line-height: 1.1
+    letter-spacing: .05em
+    &::first-letter
+        font-size: 1.3em
+
+h4
+    font-size: 1.1em
+    line-height: 1.2
+    text-transform: uppercase
+    letter-spacing: .15em
+    &::first-letter
+        font-size: 1.3em
+
+h5
+    font-size: 1em
+    line-height: 1.2
+    text-transform: uppercase
+
+li
+    list-style: none
+        
+.wrapper
+    width: 90%
+    max-width: 1200px
+    margin: 0 auto
+    padding: 1rem 0
+
+
+body
+    background-color: $light-txt-and-bg
+    font-family: 'Open Sans Condensed', sans-serif
+    color: $dark-txt
+
+
+// HEADER
+.header
+    .header-img
+        position: relative
+        z-index: 0
+        width: 100%
+        background-image: url('/img/lunch-2148346_640.jpg')
+        background-position: 30% 0%
+        &::after
+            @include beforeAfter()
+            width: 100%
+            height: 100%
+            top: 0
+            left: 0
+            z-index: -1
+            background-color: #000000AA
+    .wrapper
+        min-height: 300px
+        display: flex
+        flex-direction: column
+        justify-content: center
+    h1
+        margin-bottom: 1rem
+        color: #ffffff2d
+        text-shadow: 0 0 2px $light-txt-and-bg
+    h4
+        margin-bottom: 3rem
+        color: $col-acc
+        text-shadow: 0px 1px 2px $grey-shadow
+    .search-box
+        margin: 1rem 0
+        width: 100%
+        display: flex
+        justify-content: space-between
+    .header-input
+        flex-grow: 1
+        min-width: 50%
+        padding: 5px 10px
+        padding-top: 10px
+        font-size: 1.5rem
+        background-color: #ffffff27
+        color: $light-txt-and-bg
+        border: none
+        border-bottom: 2px solid $col-acc
+        &::placeholder
+            padding-left: 1.5rem
+            color: #b9b9b9
+            font-size: 1.2rem
+            font-style: italic
+    .header-input-btn
+        padding: 5px 1rem
+        padding-top: 10px
+        background-color: #ffffff27
+        border: none
+        border-bottom: 2px solid $col-acc
+        color: $light-txt-and-bg
+        font-size: 1.2rem
+        cursor: pointer
+
+// SEARCH SESULTS SECTION
+.search-results
+    .results
+        margin: 1.5rem 0
+    .result
+        border-bottom: 1px solid $col-acc
+        margin-bottom: 10px
+        width: 100%
+        display: flex
+        justify-content: space-between
+        align-items: center
+    .result-txt-name
+        margin-right: 1rem
+        // font-weight: 700
+    .result-txt-desciption
+        margin-right: 1rem
+        margin-left: auto
+        font-style: italic
+    .result-tools
+        display: flex
+        button
+            padding: 10px 12px
+            background: none
+            border: none
+            color: $col-acc
+            text-shadow: -1px 2px 2px $grey-shadow
+            cursor: pointer
+
+        
+// CHOSEN DISH MEAL + RANDOM PROPOSAL TODAYS PROPOSAL
+.chosen-meal, .todays-proposal
+    .chosen-title, .proposal-title
+        margin: 10px 0
+    .chosen-img-box, .proposal-img-box
+        position: relative
+        overflow: hidden
+        width: 100%
+        margin: 1rem 0 20px
+        border: 1px solid $col-acc
+    .chosen-img, .proposal-img
+        display: block        
+        width: 100%
+    .chosen-txtinimage, .proposal-txtinimage
+        display: block
+        position: absolute
+        bottom: 0
+        left: 0
+        width: 100%
+        padding: 1rem
+        background-color: #00000088
+        color: $light-txt-and-bg
+        h4
+            position: relative
+            padding: 10px 0
+            text-align: center
+            &:first-child::after
+                @include beforeAfter()
+                width: 50%
+                height: 1px
+                bottom: 0
+                left: 50%
+                transform: translateX(-50%)
+                background-color: $col-acc
+        .proposal-btn
+            position: relative
+            left: 50%
+            transform: translateX(-50%)
+            margin-top: 1rem
+            padding: 7px 10px
+            font-size: .8em
+            text-transform: uppercase
+            background: none
+            border: 1px solid $col-acc
+            border-radius: 3px
+            color: $col-acc
+            letter-spacing: .1em
+            font-weight: 700
+    h5
+        margin: 5px 0
+    .chosen-ingr
+        .chosen-ingr-list
+            margin: 10px 0 20px
+        .chosen-ingr-el
+            padding: 3px 0
+            margin-bottom: 5px
+            display: flex
+            justify-content: space-between
+            border-bottom: 1px solid $col-acc
+            p:last-child
+                font-weight: 700
+                
+                
+// 
+.footer
+    background-color: $grey-txt
+    .footer-txt
+        padding: 10px
+        font-size: .7em
+        color: $light-txt-and-bg
+        text-align: center
+        letter-spacing: .05em
+
+
+
+    
+.nodisplay
+    display: none

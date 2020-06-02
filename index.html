@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="pl-PL">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>today's meal searcher</title>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans+Condensed:wght@300;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" media='screen and (min-width: 768px)' href="./css/stylemedium.css">
+    <link rel="stylesheet" media='screen and (min-width: 992px)' href="./css/stylelarge.css">
+    <script src="https://kit.fontawesome.com/ec86877294.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <header class="header">
+        <div class="header-img">
+            <div class="wrapper">
+                <h1>today's meal searcher</h1>
+                <div class="search-box">
+                    <input type="text" placeholder="find your dish..." class="header-input"><button
+                        class="header-input-btn"><i class="fas fa-search"></i></button>
+                </div>
+                <h4>find different receipes for your favorite dish</h4>
+            </div>
+        </div>
+    </header>
+
+
+    <main>
+
+        <section class="search-results">
+            <div class="wrapper">
+                <h2>search results:</h2>
+                <div class="results-container">
+                    <ul class="results">
+                        <li class="result">
+                            <p class="result-txt-name">Beef Lo Mein</p>
+                            <p class="result-txt-desciption">Chinese</p>
+                            <div class="result-tools">
+                                <img src="" alt="" class="result-thumb"><button class="result-check"><i
+                                        class="fas fa-search"></i></button><button class="result-choose"><i
+                                            class="fas fa-check"></i></button>
+                            </div>
+                        </li>
+                        <li class="result">
+                            <p class="result-txt-name">Szechuan Beef</p>
+                            <p class="result-txt-desciption">Chinese</p>
+                            <div class="result-tools">
+                                <img src="" alt="" class="result-thumb"><button class="result-check"><i
+                                        class="fas fa-search"></i><button class="result-choose"><i
+                                            class="fas fa-check"></i></button>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+        </section>
+
+
+
+        <section class="chosen-meal">
+            <div class="wrapper">
+                <h2>your choice for today</h2>
+                <div class="chosen-container">
+                    <h3 class='chosen-title'>Corned Beef and Cabbage</h3>
+                    <div class="chosen-img-box">
+                        <img src="https://www.themealdb.com/images/media/meals/vvpprx1487325699.jpg" alt=""
+                            class="chosen-img">
+                        <div class="chosen-txtinimage">
+                            <h4 class='chosen-description'>Beef Wellington</h4>
+                            <h4 class='chosen-area'>British</h4>
+                        </div>
+                    </div>
+                    <div class="chosen-ingr">
+                        <h5>ingredients:</h5>
+                        <ul class="chosen-ingr-list">
+                            <li class="chosen-ingr-el">
+                                <p class='ingr-name'>mushrooms</p>
+                                <p class='ingr-measure'>400g</p>
+                            </li>
+                            <li class="chosen-ingr-el">
+                                <p class='ingr-name'>English Mustard</p>
+                                <p class='ingr-measure'>1-2tbsp</p>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="chosen-receipe">
+                        <h5>instructions:</h5>
+                        <p class="txt-receipe">Put the mushrooms into a food processor with some seasoning and pulse to
+                            a rough paste. Scrape the paste ..........</p>
+                    </div>
+
+
+                </div>
+            </div>
+        </section>
+
+        <section class="todays-proposal">
+            <div class="wrapper">
+                <h2>random proposal</h2>
+                <div class="porposal-container">
+                    <h3 class='proposal-title'>Beef stroganoff</h3>
+                    <div class="proposal-img-box">
+                        <img src="https://www.themealdb.com/images/media/meals/tvttqv1504640475.jpg" alt=""
+                            class="proposal-img">
+                        <div class="proposal-txtinimage">
+                            <h4 class='proposal-description'>Beef and Mustard Pie</h4>
+                            <h4 class='proposal-area'>British</h4>
+                            <button class="proposal-btn">check</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+    <footer class='footer'>
+        <p class="footer-txt">&copy; Copyright 2020 mapawel</p>
+    </footer>
+
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="./js/main.js"></script>
+</body>
+
+</html>

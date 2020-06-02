@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "",
+    "sources": [
+        "../sass/stylemedium.sass"
+    ],
+    "names": [],
+    "file": "stylemedium.css"
+}

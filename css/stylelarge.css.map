@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "",
+    "sources": [
+        "../sass/stylelarge.sass"
+    ],
+    "names": [],
+    "file": "stylelarge.css"
+}

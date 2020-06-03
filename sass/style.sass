@@ -77,6 +77,9 @@ li
 
 
 body
+    min-height: 100vh
+    display: flex
+    flex-direction: column
     background-color: $light-txt-and-bg
     font-family: 'Open Sans Condensed', sans-serif
     color: $dark-txt
@@ -178,11 +181,13 @@ body
         position: relative
         overflow: hidden
         width: 100%
+        height: auto
         margin: 1rem 0 20px
         border: 1px solid $col-acc
     .chosen-img, .proposal-img
         display: block        
         width: 100%
+        height: auto
     .chosen-txtinimage, .proposal-txtinimage
         display: block
         position: absolute
@@ -231,10 +236,48 @@ body
             border-bottom: 1px solid $col-acc
             p:last-child
                 font-weight: 700
-                
-                
+    .txt-receipe
+        margin-top: 10px
+        &::first-letter
+            font-size: 1.2em
+
+// todays random proposal only
+.todays-proposal     
+    margin-top: 50px
+
+// back section/element
+.back
+    .back-link
+        cursor: pointer
+        text-decoration-line: underline
+    h6
+        display: inline
+        color: $grey-shadow
+        font-style: italic
+    .fa-angle-double-left
+        color: $col-acc
+        padding: 0 5px
+
+
+.manual
+    .manual-info
+        text-align: center
+        color: $grey-txt
+        font-size: .9em
+        font-weight: 300
+        &::first-letter
+            font-size: 1.3em
+        &::first-line
+            text-transform: uppercase
+            font-size: 1.2em
+            font-style: italic
+
+
+
 // 
 .footer
+    margin-top: auto
+    bottom: 0
     background-color: $grey-txt
     .footer-txt
         padding: 10px

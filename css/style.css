@@ -87,6 +87,14 @@ li {
 }
 
 body {
+  min-height: 100vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
   background-color: #fff6eb;
   font-family: 'Open Sans Condensed', sans-serif;
   color: #161514;
@@ -254,6 +262,7 @@ body {
   position: relative;
   overflow: hidden;
   width: 100%;
+  height: auto;
   margin: 1rem 0 20px;
   border: 1px solid #009efa;
 }
@@ -261,6 +270,7 @@ body {
 .chosen-meal .chosen-img, .chosen-meal .proposal-img, .todays-proposal .chosen-img, .todays-proposal .proposal-img {
   display: block;
   width: 100%;
+  height: auto;
 }
 
 .chosen-meal .chosen-txtinimage, .chosen-meal .proposal-txtinimage, .todays-proposal .chosen-txtinimage, .todays-proposal .proposal-txtinimage {
@@ -334,7 +344,55 @@ body {
   font-weight: 700;
 }
 
+.chosen-meal .txt-receipe, .todays-proposal .txt-receipe {
+  margin-top: 10px;
+}
+
+.chosen-meal .txt-receipe::first-letter, .todays-proposal .txt-receipe::first-letter {
+  font-size: 1.2em;
+}
+
+.todays-proposal {
+  margin-top: 50px;
+}
+
+.back .back-link {
+  cursor: pointer;
+  -webkit-text-decoration-line: underline;
+          text-decoration-line: underline;
+}
+
+.back h6 {
+  display: inline;
+  color: #888682;
+  font-style: italic;
+}
+
+.back .fa-angle-double-left {
+  color: #009efa;
+  padding: 0 5px;
+}
+
+.manual .manual-info {
+  text-align: center;
+  color: #38342f;
+  font-size: .9em;
+  font-weight: 300;
+}
+
+.manual .manual-info::first-letter {
+  font-size: 1.3em;
+}
+
+.manual .manual-info::first-line {
+  text-transform: uppercase;
+  font-size: 1.2em;
+  font-style: italic;
+}
+
 .footer {
+  margin-top: auto;
+  bottom: 0;
   background-color: #38342f;
 }
 

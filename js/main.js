@@ -3,15 +3,31 @@ let $url;
 let $content; //api reponce with meals
 let $input;
 let $searchBtn;
-// sections to display:
-let $resultsSection;
-let $choiceSection;
+
+let $resultsSection; //result section
+let $randomPropSection; //random proposal section
+let $backSection;
+let $manualSection;
+let $backLink;
 
 let $resultsList; // list with meals to select
 let $resultsListContainer; // list with meals to select
 
+let $choiceSection; //section with chosen meal
+let $chosenMealTitle;
+let $chosenMealImage;
+let $chosenMealDecription;
+let $chosenMealArea;
+let $chosenMealIngListContainer;
+let $chosenMealIngList;
+let $chosenMealReceip;
+let $chosenMealReceipParent;
+
 // different variables
 let $searchedMeal;
+let $mealId;
+let $selectedMealsID;
+let $receipeElNr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
 
 
 
@@ -26,10 +42,31 @@ const prepareDomElements = () => {
     $searchBtn = document.querySelector('.header-input-btn');
     $resultsList = document.querySelector('.results');
     $resultsListContainer = document.querySelector('.results-container');
+
+    $chosenMealTitle = document.querySelector('.chosen-title');
+    $chosenMealImage = document.querySelector('.chosen-img');
+    $chosenMealDecription = document.querySelector('.chosen-description');
+    $chosenMealArea = document.querySelector('.chosen-area');
+    $chosenMealIngListContainer = document.querySelector('.chosen-ingr');
+    $chosenMealIngList = document.querySelector('.chosen-ingr-list');
+    $chosenMealReceipParent = document.querySelector('.chosen-receipe');
+    $chosenMealReceip = document.querySelector('.chosen-receipe-box');
+    $resultsSection = document.querySelector('.search-results');
+    $choiceSection = document.querySelector('.chosen-meal');
+    $randomPropSection = document.querySelector('.todays-proposal');
+    $backSection = document.querySelector('.back');
+    $backLink = document.querySelector('.back-link');
+    $manualSection = document.querySelector('.manual');
 }
 
 const prepareEvents = () => {
+    $backLink.addEventListener('click', listBack)
     $searchBtn.addEventListener('click', searchMeal)
+    $input.addEventListener('keyup', function (key) {
+        if (key.key == 'Enter') {
+            searchMeal();
+        }
+    })
 }
 
 
@@ -43,7 +80,12 @@ const searchMeal = () => {
             $content = res.data.meals;
             console.log($content);
             clearResultsList();
-            $content.forEach(addResult);
+            $mealId = 0;
+            if ($content) {
+                $content.forEach(addResult)
+            } else {
+                wrongSearch();
+            }
         })
         .catch(err => console.log('! ! ERROR ! !' + err))
 }
@@ -56,8 +98,13 @@ const clearResultsList = () => {
 }
 
 const addResult = (meal) => {
+    $resultsSection.classList.remove('nodisplay');
+    $choiceSection.classList.add('nodisplay');
+    $manualSection.classList.add('nodisplay');
+    $input.value = '';
     let newResult = document.createElement('li');
     newResult.classList.add('result');
+    newResult.setAttribute('id', $mealId);
     $resultsList.appendChild(newResult);
     let newResultTxtName = document.createElement('p');
     newResultTxtName.classList.add('result-txt-name');
@@ -81,66 +128,92 @@ const addResult = (meal) => {
     newResultToolsBox.appendChild(newButtonChoose);
     let iconChoose = document.createElement('i')
     iconChoose.classList.add('fas', 'fa-check');
+    iconChoose.setAttribute('onclick', 'selectMealfromList(this)')
     newButtonChoose.appendChild(iconChoose);
+    $mealId += 1;
+}
+
+const wrongSearch = () => {
+    $resultsSection.classList.remove('nodisplay');
+    $choiceSection.classList.add('nodisplay');
+    $manualSection.classList.add('nodisplay');
+    $input.value = '';
+    let newResult = document.createElement('li');
+    newResult.classList.add('result');
+    $resultsList.appendChild(newResult);
+    let newResultTxtName = document.createElement('p');
+    newResultTxtName.classList.add('result-txt-name');
+    newResultTxtName.innerText = "not found - try another dish name...";
+    newResultTxtName.style.color = 'red';
+    newResult.appendChild(newResultTxtName);
+}
+
+const selectMealfromList = (id) => {
+    $choiceSection.classList.remove('nodisplay');
+    $selectedMealsID = id.closest('li').getAttribute('id');
+    $resultsSection.classList.add('nodisplay');
+    $backSection.classList.remove('nodisplay');
+    $randomPropSection.classList.add('nodisplay');
+    displayChosenMeal();
+    displayIngreadients();
+    displayReceipe();
+}
+
+const listBack = () => {
+    $backSection.classList.add('nodisplay');
+    $choiceSection.classList.add('nodisplay');
+    $resultsSection.classList.remove('nodisplay');
+}
+
+const displayChosenMeal = () => {
+    $chosenMealImage.setAttribute('src', $content[$selectedMealsID].strMealThumb);
+    $chosenMealTitle.innerText = $content[$selectedMealsID].strMeal;
+    $chosenMealDecription.innerText = $content[$selectedMealsID].strMeal;
+    $chosenMealArea.innerText = $content[$selectedMealsID].strArea;
+}
+
+const displayIngreadients = () => {
+    $chosenMealIngListContainer.removeChild($chosenMealIngList);
+    $chosenMealIngList = document.createElement('ul');
+    $chosenMealIngList.classList.add('chosen-ingr-list');
+    $chosenMealIngListContainer.appendChild($chosenMealIngList);
+    $receipeElNr.forEach(nr => {
+        let ingreadient = eval('$content[$selectedMealsID].strIngredient' + String(nr));
+        let measure = eval('$content[$selectedMealsID].strMeasure' + String(nr));
+        if (ingreadient) {
+            let newIngreadient = document.createElement('li');
+            newIngreadient.classList.add('chosen-ingr-el');
+            $chosenMealIngList.appendChild(newIngreadient);
+            let newIngreadientName = document.createElement('p');
+            newIngreadientName.classList.add('ingr-name');
+            newIngreadientName.innerText = ingreadient;
+            newIngreadient.appendChild(newIngreadientName);
+            let newIngreadientMeasure = document.createElement('p');
+            newIngreadientMeasure.classList.add('ingr-measure');
+            newIngreadientMeasure.innerText = measure;
+            newIngreadient.appendChild(newIngreadientMeasure);
+        }
+    })
+}
+
+const displayReceipe = () => {
+    $chosenMealReceipParent.removeChild($chosenMealReceip);
+    $chosenMealReceip = document.createElement('div');
+    $chosenMealReceip.classList.add('chosen-receipe-box');
+    $chosenMealReceipParent.appendChild($chosenMealReceip);
+
+    let instructionsTxt = $content[$selectedMealsID].strInstructions.split(/\n/ig);
+    instructionsTxt.forEach(receipEl => {
+        if (receipEl != '<br>') {
+            let newInstructionPar = document.createElement('p');
+            newInstructionPar.classList.add('txt-receipe');
+            newInstructionPar.innerHTML = receipEl;
+            $chosenMealReceip.appendChild(newInstructionPar);
+        }
+    })
+
 }
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
 document.addEventListener("DOMContentLoaded", main)
-
-
-
-
-
-
-
-
-
-
-
-
-// const display = (id) => {
-//     img.setAttribute('src', content[id].strMealThumb)
-// }
-
-// const test = (chosen) => {
-//     display(chosen.getAttribute('id'))
-// }
-
-// const createMeals = (meal) => {
-//     console.log(meal.strMeal);
-//     let foodElement = document.createElement('a');
-//     container.appendChild(foodElement)
-//     foodElement.innerText = meal.strMeal;
-//     // foodElement.setAttribute('href', meal.strMealThumb)
-//     foodElement.setAttribute('id', id)
-//     id += 1;
-//     foodElement.setAttribute('onclick', 'test(this)')
-// }
-
-// const link = 'https://www.themealdb.com/api/json/v1/1/search.php?s='
-// let content;
-// let id = 0;
-
-//     searched = 'beef';
-//     url = link + searched
-//     axios.get(url)
-//         .then(res => {
-//             content = res.data.meals;
-//             console.log(content);
-//             // console.log(content.length);
-//             // content.forEach(createMeals)
-//         })
-//         .catch(err => console.log('ERROR' + err))

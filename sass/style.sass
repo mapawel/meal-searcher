@@ -6,14 +6,14 @@
     position: absolute
 
 $light-txt-and-bg: #fff6eb
-$grey-txt: #38342f
+$grey-txt: #535251
 $grey-shadow: #888682
 $dark-txt: #161514
 $col-acc: #009efa
 
 
 \:root
-    font-size: 15px
+    font-size: 16px
 
 h1
     font-size: 3em
@@ -28,7 +28,7 @@ h2
     transform: translateX(-50%)
     z-index: 0
     margin-bottom: 10px    
-    font-size: 2.4em
+    font-size: 2.1em
     color: $grey-txt
     text-transform: uppercase
     line-height: 1
@@ -45,7 +45,7 @@ h2
         background-image: linear-gradient(90deg, rgba(255,246,235,1) 0%, rgba(0,158,250,0) 10%, rgba(0,158,250,0) 90%, rgba(255,246,235,1) 100%), linear-gradient(0deg, rgba(223,193,34,0) 5%, rgba(0,158,250,.4) 25%, rgba(223,193,34,0) 70%),
 
 h3
-    font-size: 2em
+    font-size: 1.7em
     font-weight: 300
     text-transform: uppercase
     line-height: 1.1
@@ -93,6 +93,9 @@ body
         width: 100%
         background-image: url('../img/lunch-2148346_640.jpg')
         background-position: 30% 0%
+        background-repeat: no-repeat
+        background-size: cover
+
         &::after
             @include beforeAfter()
             width: 100%
@@ -102,7 +105,8 @@ body
             z-index: -1
             background-color: #000000AA
     .wrapper
-        min-height: 300px
+        height: 66vh
+        max-height: 310px
         display: flex
         flex-direction: column
         justify-content: center
@@ -111,9 +115,10 @@ body
         color: #ffffff2d
         text-shadow: 0 0 2px $light-txt-and-bg
     h4
-        margin-bottom: 3rem
+        margin-bottom: 2rem
         color: $col-acc
         text-shadow: 0px 1px 2px $grey-shadow
+        line-height: 1.4
     .search-box
         margin: 1rem 0
         width: 100%
@@ -144,11 +149,19 @@ body
         font-size: 1.2rem
         cursor: pointer
 
+
+// THUBNAILS SECTION
+
+
+
+
+
 // SEARCH SESULTS SECTION
 .search-results
     .results
         margin: 1.5rem 0
     .result
+        position: relative
         border-bottom: 1px solid $col-acc
         margin-bottom: 10px
         width: 100%
@@ -171,8 +184,56 @@ body
             color: $col-acc
             text-shadow: -1px 2px 2px $grey-shadow
             cursor: pointer
+            i
+                font-size: 1.5em
+    
+    .result-img-box
+        overflow: hidden
+        position: absolute
+        z-index: 0
+        bottom: 30px
+        left: 0
+        border: 1px solid $col-acc
+        border-radius: 3px
+        cursor: pointer
+    .hidden-img-box
+        visibility: hidden
+        z-index: -10
+    .result-img
+        display: block
+        width: 65vw
+    .result-thumb-close
+        display: block
+        position: absolute
+        width: 100%
+        top: 0
+        left: 0
+        padding: 5px
+        text-align: center
+        background-color: #00000099
+        font-size: .8em
+        color: $light-txt-and-bg
+        font-style: italic
+        letter-spacing: 0.1em
+    .result-thumb-select-btn
+        position: absolute
+        bottom: 10px
+        left: 50%
+        transform: translateX(-50%)
+        padding: 8px 1rem
+        background-color: #00000088
+        border: 1px solid $col-acc
+        border-radius: 3px
+        text-transform: uppercase
+        color: $col-acc
+        letter-spacing: 0.1em
+        cursor: pointer
+
 
         
+
+
+
 // CHOSEN DISH MEAL + RANDOM PROPOSAL TODAYS PROPOSAL
 .chosen-meal, .todays-proposal
     .chosen-title, .proposal-title
@@ -214,7 +275,7 @@ body
             left: 50%
             transform: translateX(-50%)
             margin-top: 1rem
-            padding: 7px 10px
+            padding: 8px 1rem
             font-size: .8em
             text-transform: uppercase
             background: none
@@ -243,7 +304,7 @@ body
 
 // todays random proposal only
 .todays-proposal     
-    margin-top: 50px
+    margin-top: 25px
 
 // back section/element
 .back
@@ -253,6 +314,7 @@ body
     h6
         display: inline
         color: $grey-shadow
+        font-size: 1rem
         font-style: italic
     .fa-angle-double-left
         color: $col-acc
@@ -260,17 +322,23 @@ body
 
 
 .manual
-    .manual-info
-        text-align: center
-        color: $grey-txt
-        font-size: .9em
+    text-align: center
+    color: $grey-txt
+    font-style: italic
+    .wrapper
+        position: relative
+        top: 0
+        bottom: 0
+      
+    h4
+        margin-bottom: 8px
+        font-size: 1.3em
         font-weight: 300
-        &::first-letter
-            font-size: 1.3em
-        &::first-line
-            text-transform: uppercase
-            font-size: 1.2em
-            font-style: italic
+        text-transform: uppercase
+    p
+        font-size: 1.2em
+        line-height: 1.5
+
 
 
 

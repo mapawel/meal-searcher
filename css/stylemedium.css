@@ -1,1 +1,233 @@
-/* No CSS *//*# sourceMappingURL=stylemedium.css.map */
+h1 {
+  font-size: 3.5em;
+}
+
+h2 {
+  font-size: 2.5em;
+  letter-spacing: .2em;
+}
+
+h4 {
+  font-size: 1.4em;
+}
+
+h5 {
+  font-size: 1.2em;
+}
+
+.header h1 {
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+
+.header h4 {
+  width: 65%;
+}
+
+.header .search-box {
+  width: 65%;
+}
+
+.header .header-img {
+  background-image: url("../img/lunch-2148346_1280.jpg");
+}
+
+button.blue-btn::before {
+  background-color: #00000088;
+}
+
+button.blue-btn:hover {
+  color: #009efa;
+}
+
+.search-results .result {
+  overflow: hidden;
+  border-bottom: 2px solid #009efa;
+}
+
+.search-results .result-txt-name {
+  font-size: 1.3em;
+}
+
+.search-results .result-txt-desciption {
+  font-size: 1.3em;
+}
+
+.search-results .result-tools {
+  display: none;
+}
+
+.search-results .result-img-box {
+  height: 100px;
+  width: 200px;
+  -ms-flex-negative: 0;
+      flex-shrink: 0;
+  position: relative;
+  bottom: 0;
+  left: 0;
+  margin-left: 2.5rem;
+  border: none;
+  border-right: 1px solid #009efa;
+  border-top: 1px solid #009efa;
+  border-radius: 5px 0 0 0;
+}
+
+.search-results .hidden-img-box {
+  visibility: visible;
+  -webkit-transform: scale(1);
+          transform: scale(1);
+  z-index: 0;
+}
+
+.search-results .result-img {
+  position: relative;
+  width: 200px;
+}
+
+.search-results .result-thumb-close {
+  display: none;
+}
+
+.search-results .result-thumb-select-btn {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  -webkit-transform: translateX(0);
+          transform: translateX(0);
+  background-color: transparent;
+  border: none;
+  border-radius: 0;
+  text-transform: uppercase;
+  color: transparent;
+  letter-spacing: 0.1em;
+  cursor: pointer;
+}
+
+.search-results .result-img-box:hover > .result-thumb-select-btn {
+  -webkit-transform: translateX(0) translateY(0);
+          transform: translateX(0) translateY(0);
+}
+
+.chosen-meal .chosen-title, .chosen-meal .proposal-title, .todays-proposal .chosen-title, .todays-proposal .proposal-title {
+  display: none;
+}
+
+.chosen-meal .chosen-img-box, .chosen-meal .proposal-img-box, .todays-proposal .chosen-img-box, .todays-proposal .proposal-img-box {
+  z-index: 0;
+  max-width: 750px;
+  margin: 2rem auto;
+}
+
+.chosen-meal .chosen-img-box::after, .chosen-meal .chosen-img-box::before, .chosen-meal .proposal-img-box::after, .chosen-meal .proposal-img-box::before, .todays-proposal .chosen-img-box::after, .todays-proposal .chosen-img-box::before, .todays-proposal .proposal-img-box::after, .todays-proposal .proposal-img-box::before {
+  content: '';
+  display: block;
+  position: absolute;
+  z-index: 1;
+  width: 80%;
+  height: 80%;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  -webkit-transition: -webkit-transform .3s;
+  transition: -webkit-transform .3s;
+  transition: transform .3s;
+  transition: transform .3s, -webkit-transform .3s;
+}
+
+.chosen-meal .chosen-img-box::after, .chosen-meal .proposal-img-box::after, .todays-proposal .chosen-img-box::after, .todays-proposal .proposal-img-box::after {
+  border-top: 1px solid #fff6eb;
+  border-bottom: 1px solid #fff6eb;
+  -webkit-transform: translate(-50%, -50%) scaleX(1.1);
+          transform: translate(-50%, -50%) scaleX(1.1);
+}
+
+.chosen-meal .chosen-img-box::before, .chosen-meal .proposal-img-box::before, .todays-proposal .chosen-img-box::before, .todays-proposal .proposal-img-box::before {
+  border-left: 1px solid #fff6eb;
+  border-right: 1px solid #fff6eb;
+  -webkit-transform: translate(-50%, -50%) scaleY(1.1);
+          transform: translate(-50%, -50%) scaleY(1.1);
+}
+
+.chosen-meal .chosen-txtinimage, .chosen-meal .proposal-txtinimage, .todays-proposal .chosen-txtinimage, .todays-proposal .proposal-txtinimage {
+  width: 100%;
+  height: 100%;
+  background-color: #00000088;
+  padding: 15%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.chosen-meal .chosen-txtinimage h4, .chosen-meal .proposal-txtinimage h4, .todays-proposal .chosen-txtinimage h4, .todays-proposal .proposal-txtinimage h4 {
+  font-size: 3em;
+}
+
+.chosen-meal .chosen-txtinimage h4:first-child, .chosen-meal .proposal-txtinimage h4:first-child, .todays-proposal .chosen-txtinimage h4:first-child, .todays-proposal .proposal-txtinimage h4:first-child {
+  font-size: 4em;
+}
+
+.chosen-meal .proposal-btn, .chosen-meal .proposal-refresh-btn, .todays-proposal .proposal-btn, .todays-proposal .proposal-refresh-btn {
+  left: 0;
+  -webkit-transform: translateX(0);
+          transform: translateX(0);
+  padding: 1rem 2.5rem;
+}
+
+.chosen-meal .proposal-refresh-btn, .todays-proposal .proposal-refresh-btn {
+  padding: 4px 8px 8px 6px;
+}
+
+.chosen-meal .proposal-img-box:hover > .proposal-txtinimage > .proposal-btn, .todays-proposal .proposal-img-box:hover > .proposal-txtinimage > .proposal-btn {
+  -webkit-transform: translateX(0) translateY(-100%);
+          transform: translateX(0) translateY(-100%);
+}
+
+.chosen-meal .proposal-img-box:hover::before, .todays-proposal .proposal-img-box:hover::before {
+  -webkit-transform: translate(-50%, -50%) scaleY(0);
+          transform: translate(-50%, -50%) scaleY(0);
+}
+
+.chosen-meal .proposal-img-box:hover::after, .todays-proposal .proposal-img-box:hover::after {
+  -webkit-transform: translate(-50%, -50%) scaleX(0);
+          transform: translate(-50%, -50%) scaleX(0);
+}
+
+.chosen-meal .chosen-img-box:hover::before, .todays-proposal .chosen-img-box:hover::before {
+  -webkit-transform: translate(-50%, -50%) scaleY(0);
+          transform: translate(-50%, -50%) scaleY(0);
+}
+
+.chosen-meal .chosen-img-box:hover::after, .todays-proposal .chosen-img-box:hover::after {
+  -webkit-transform: translate(-50%, -50%) scaleX(0);
+          transform: translate(-50%, -50%) scaleX(0);
+}
+
+.manual .wrapper {
+  margin-bottom: 5rem;
+}
+
+.manual h4 {
+  margin: 1.5rem 0;
+  font-size: 2em;
+  font-weight: 300;
+  text-transform: uppercase;
+}
+
+.manual p {
+  font-size: 1.7em;
+  line-height: 1.5;
+}
+/*# sourceMappingURL=stylemedium.css.map */

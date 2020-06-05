@@ -1,6 +1,6 @@
 {
     "version": 3,
-    "mappings": "",
+    "mappings": "AACA,AACI,OADG,CACH,WAAW,CAAC;EACR,gBAAgB,EAAE,+BAA+B;EACjD,mBAAmB,EAAE,OAAO;CAAG",
     "sources": [
         "../sass/stylelarge.sass"
     ],

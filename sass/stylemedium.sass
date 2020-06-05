@@ -1,0 +1,170 @@
+$light-txt-and-bg: #fff6eb
+$grey-txt: #535251
+$grey-shadow: #888682
+$dark-txt: #161514
+$col-acc: #009efa
+
+@mixin beforeAfter()
+    content: ''
+    display: block
+    position: absolute
+
+h1
+    font-size: 3.5em
+
+h2
+    font-size: 2.5em
+    letter-spacing: .2em
+
+h4
+    font-size: 1.4em
+
+h5
+    font-size: 1.2em
+
+// HEADER
+.header
+    h1
+        text-align: center
+        margin-bottom: 2.5rem
+    h4
+        width: 65%
+    .search-box
+        width: 65%
+    .header-img
+        background-image: url('../img/lunch-2148346_1280.jpg')
+
+
+button.blue-btn
+    &::before
+        background-color: #00000088
+    &:hover
+        color: $col-acc
+            
+
+// SEARCH SESULTS SECTION
+.search-results
+    .result
+        overflow: hidden
+        border-bottom: 2px solid $col-acc
+    .result-txt-name
+        font-size: 1.3em
+    .result-txt-desciption
+        font-size: 1.3em
+    .result-tools
+        display: none
+    .result-img-box
+        height: 100px
+        width: 200px
+        flex-shrink: 0
+        position: relative
+        bottom: 0
+        left: 0
+        margin-left: 2.5rem
+        border: none
+        border-right: 1px solid $col-acc
+        border-top: 1px solid $col-acc
+        border-radius: 5px 0 0 0
+    .hidden-img-box
+        visibility: visible
+        transform: scale(1)
+        z-index: 0
+    .result-img
+        position: relative
+        width: 200px
+    .result-thumb-close
+        display: none
+    .result-thumb-select-btn
+        position: absolute
+        bottom: 0
+        left: 0
+        width: 100%
+        height: 100%
+        transform: translateX(0)
+        background-color: transparent
+        border: none
+        border-radius: 0
+        text-transform: uppercase
+        color: transparent
+        letter-spacing: 0.1em
+        cursor: pointer
+    .result-img-box:hover
+        &>.result-thumb-select-btn
+            transform: translateX(0) translateY(0)
+        
+
+
+
+
+// CHOSEN DISH MEAL + RANDOM PROPOSAL TODAYS PROPOSAL
+.chosen-meal, .todays-proposal
+    .chosen-title, .proposal-title
+        display: none
+    .chosen-img-box, .proposal-img-box
+        z-index: 0
+        max-width: 750px
+        margin: 2rem auto
+        &::after, &::before
+            @include beforeAfter()
+            z-index: 1
+            width: 80%
+            height: 80%
+            left: 50%
+            top: 50%
+            transform: translate(-50%, -50%) 
+            transition: transform .3s
+        &::after
+            border-top: 1px solid $light-txt-and-bg
+            border-bottom: 1px solid $light-txt-and-bg
+            transform: translate(-50%, -50%) scaleX(1.1) 
+        &::before
+            border-left: 1px solid $light-txt-and-bg
+            border-right: 1px solid $light-txt-and-bg
+            transform: translate(-50%, -50%) scaleY(1.1) 
+
+    .chosen-txtinimage, .proposal-txtinimage
+        width: 100%
+        height: 100%
+        background-color: #00000088
+        padding: 15%
+        display: flex
+        flex-direction: column
+        justify-content: center
+        align-items: center
+        h4
+            font-size: 3em
+            &:first-child
+                font-size: 4em
+    .proposal-btn, .proposal-refresh-btn
+        left: 0
+        transform: translateX(0)
+        padding: 1rem 2.5rem
+    .proposal-refresh-btn
+        padding: 4px 8px 8px 6px
+    .proposal-img-box:hover
+        &>.proposal-txtinimage
+            &>.proposal-btn
+                transform: translateX(0) translateY(-100%)
+        &::before
+            transform: translate(-50%, -50%) scaleY(0)
+        &::after
+            transform: translate(-50%, -50%) scaleX(0)
+    .chosen-img-box:hover
+        &::before
+            transform: translate(-50%, -50%) scaleY(0)
+        &::after
+            transform: translate(-50%, -50%) scaleX(0)
+                
+.manual
+    .wrapper
+        margin-bottom: 5rem
+    h4
+        margin: 1.5rem 0
+        font-size: 2em
+        font-weight: 300
+        text-transform: uppercase
+    p
+        font-size: 1.7em
+        line-height: 1.5
+
+

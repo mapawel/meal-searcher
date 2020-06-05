@@ -1,20 +1,21 @@
 const $link = 'https://www.themealdb.com/api/json/v1/1/search.php?s='; //api link w/o searched food name
 let $url;
+let $urlRandom = 'https://www.themealdb.com/api/json/v1/1/random.php';
 let $content; //api reponce with meals
+let $randomMeal; //api responce with random meal
 let $input;
 let $searchBtn;
-
+let $homeBtn;
 let $thumbnailsSection; //thumbnails section
 let $resultsSection; //result section
-let $randomPropSection; //random proposal section
-let $backSection;
-let $manualSection;
-let $backLink;
-
+let $backSection; //section with back to list link
+let $manualSection; //welcome section
+let $backLink; //link 'back to list'
 let $resultsList; // list with meals to select
-let $resultsListContainer; // list with meals to select
+let $resultsListContainer; // container with list with results to clear list
 
-let $choiceSection; //section with chosen meal
+//section with chosen meal
+let $choiceSection;
 let $chosenMealTitle;
 let $chosenMealImage;
 let $chosenMealDecription;
@@ -23,6 +24,15 @@ let $chosenMealIngListContainer;
 let $chosenMealIngList;
 let $chosenMealReceip;
 let $chosenMealReceipParent;
+
+// section with random meal
+let $randomPropSection; //random proposal section
+let $randomPropTitle;
+let $randomPropImage;
+let $randomPropDecription;
+let $randomPropArea;
+let $randomPropBtn;
+let $randomRefreshBtn;
 
 // different variables
 let $searchedMeal;
@@ -36,17 +46,19 @@ let $nowPreviewed;
 
 
 
+
 const main = () => {
     prepareDomElements();
     prepareEvents();
+    getRandomProp();
 }
 
 const prepareDomElements = () => {
     $input = document.querySelector('.header-input');
     $searchBtn = document.querySelector('.header-input-btn');
+    $homeBtn = document.querySelector('.home-btn');
     $resultsList = document.querySelector('.results');
     $resultsListContainer = document.querySelector('.results-container');
-
     $chosenMealTitle = document.querySelector('.chosen-title');
     $chosenMealImage = document.querySelector('.chosen-img');
     $chosenMealDecription = document.querySelector('.chosen-description');
@@ -57,16 +69,25 @@ const prepareDomElements = () => {
     $chosenMealReceip = document.querySelector('.chosen-receipe-box');
     $resultsSection = document.querySelector('.search-results');
     $choiceSection = document.querySelector('.chosen-meal');
-    $randomPropSection = document.querySelector('.todays-proposal');
     $backSection = document.querySelector('.back');
     $backLink = document.querySelector('.back-link');
     $manualSection = document.querySelector('.manual');
     $thumbnailsSection = document.querySelector('.thubnails');
+    $randomPropSection = document.querySelector('.todays-proposal');
+    $randomPropTitle = document.querySelector('.proposal-title');
+    $randomPropImage = document.querySelector('.proposal-img');
+    $randomPropDecription = document.querySelector('.proposal-description');
+    $randomPropArea = document.querySelector('.proposal-area');
+    $randomPropBtn = document.querySelector('.proposal-btn');
+    $randomRefreshBtn = document.querySelector('.proposal-refresh-btn');
 }
 
 const prepareEvents = () => {
     $backLink.addEventListener('click', listBack)
+    $homeBtn.addEventListener('click', () => window.location.reload(true))
     $searchBtn.addEventListener('click', searchMeal)
+    $randomPropBtn.addEventListener('click', selectRandomMeal)
+    $randomRefreshBtn.addEventListener('click', getRandomProp);
     $input.addEventListener('keyup', function (key) {
         if (key.key == 'Enter') {
             searchMeal();
@@ -75,10 +96,8 @@ const prepareEvents = () => {
 }
 
 
-
 const searchMeal = () => {
     $searchedMeal = $input.value;
-    console.log($searchedMeal)
     $url = $link + $searchedMeal;
     axios.get($url)
         .then(res => {
@@ -91,6 +110,16 @@ const searchMeal = () => {
             } else {
                 wrongSearch();
             }
+        })
+        .catch(err => console.log('! ! ERROR ! !' + err))
+}
+
+const getRandomProp = () => {
+    axios.get($urlRandom)
+        .then(res => {
+            $randomMeal = res.data.meals;
+            displayRandomMeal();
+            console.log($randomMeal);
         })
         .catch(err => console.log('! ! ERROR ! !' + err))
 }
@@ -154,7 +183,7 @@ const addResult = (meal) => {
     newResultImgBox.appendChild(newResultImgTxt);
 
     let newResultImgBtn = document.createElement('button');
-    newResultImgBtn.classList.add('result-thumb-select-btn');
+    newResultImgBtn.classList.add('result-thumb-select-btn', 'blue-btn');
     newResultImgBtn.setAttribute('id', $mealId);
     newResultImgBtn.setAttribute('onclick', 'selectMealfromList(this)');
     newResultImgBtn.innerText = 'check';
@@ -182,7 +211,7 @@ const wrongSearch = () => {
 }
 
 const showImgBox = (id) => {
-    ($nowPreviewed) ? closeImgBox() : '';
+    ($nowPreviewed) ? closeImgBox(): '';
     $previewMealsID = id.closest('li').getAttribute('id');
     $resultsImgBoxes = document.querySelectorAll('.result-img-box');
     $resultsImgBoxes[$previewMealsID].classList.remove('hidden-img-box');
@@ -202,11 +231,27 @@ const selectMealfromList = (id) => {
     $resultsSection.classList.add('nodisplay');
     $backSection.classList.remove('nodisplay');
     $randomPropSection.classList.add('nodisplay');
-    ($nowPreviewed) ? closeImgBox() : '';
+    ($nowPreviewed) ? closeImgBox(): '';
     displayChosenMeal();
     displayIngreadients();
     displayReceipe();
 }
+
+const selectRandomMeal = () => {
+    $choiceSection.classList.remove('nodisplay');
+    $content = $randomMeal;
+    $selectedMealsID = 0;
+    $resultsSection.classList.add('nodisplay');
+    $randomPropSection.classList.add('nodisplay');
+    $manualSection.classList.add('nodisplay');
+    ($nowPreviewed) ? closeImgBox(): '';
+    displayChosenMeal();
+    displayIngreadients();
+    displayReceipe();
+    $content = '';
+}
+
+
 
 const listBack = () => {
     $backSection.classList.add('nodisplay');
@@ -262,6 +307,16 @@ const displayReceipe = () => {
         }
     })
 
+}
+const displayRandomMeal = () => {
+    $randomPropTitle.innerText = '';
+    $randomPropTitle.innerText = $randomMeal[0].strMeal;
+    $randomPropDecription.innerText = '';
+    $randomPropDecription.innerText = $randomMeal[0].strMeal;
+    $randomPropArea.innerText = '';
+    $randomPropArea.innerText = $randomMeal[0].strArea;
+    $randomPropImage.setAttribute('src', '');
+    $randomPropImage.setAttribute('src', $randomMeal[0].strMealThumb);
 }
 
 

@@ -68,7 +68,33 @@ h5
 
 li
     list-style: none
-        
+
+button.blue-btn
+    position: relative
+    overflow: hidden
+    z-index: 0
+    &::before
+        content: ''
+        display: block
+        position: absolute
+        z-index: -1
+        width: 100%
+        height: 100%
+        top: 0
+        left: 0
+        background-color: $col-acc
+        transform: scaleY(0)
+        transform-origin: bottom
+        transition: transform .15s
+    &:hover
+        color: $light-txt-and-bg
+        &::before
+            transform: scaleY(1)
+            transform-origin: top
+            
+
+
+
 .wrapper
     width: 90%
     max-width: 1200px
@@ -105,8 +131,9 @@ body
             z-index: -1
             background-color: #000000AA
     .wrapper
-        height: 66vh
-        max-height: 310px
+        position: relative
+        height: 100vh
+        max-height: 375px
         display: flex
         flex-direction: column
         justify-content: center
@@ -120,7 +147,7 @@ body
         text-shadow: 0px 1px 2px $grey-shadow
         line-height: 1.4
     .search-box
-        margin: 1rem 0
+        margin: 2rem 0
         width: 100%
         display: flex
         justify-content: space-between
@@ -148,7 +175,19 @@ body
         color: $light-txt-and-bg
         font-size: 1.2rem
         cursor: pointer
-
+    .home-btn
+        position: absolute
+        right: 0
+        bottom: 10px
+        padding: 5px .7rem
+        font-size: 1.5em
+        background: none
+        border: none
+        color: $col-acc
+        cursor: pointer
+        transition: transform .15s
+        &:hover
+            transform: scale(1.2)
 
 // THUBNAILS SECTION
 
@@ -186,18 +225,30 @@ body
             cursor: pointer
             i
                 font-size: 1.5em
-    
+                transition: transform .3s
+    .result:hover
+        &>.result-txt-name
+            color: $col-acc
+    .result-check:hover>i
+        transform: rotate(-45deg)
+    .result-choose:hover>i
+        transform: scale(1.5)
+
     .result-img-box
         overflow: hidden
-        position: absolute
         z-index: 0
+        position: absolute
         bottom: 30px
         left: 0
         border: 1px solid $col-acc
         border-radius: 3px
         cursor: pointer
+        transform: scale(1)
+        transform-origin: left bottom
+        transition: transform .25s
     .hidden-img-box
         visibility: hidden
+        transform: scale(0)
         z-index: -10
     .result-img
         display: block
@@ -215,6 +266,7 @@ body
         color: $light-txt-and-bg
         font-style: italic
         letter-spacing: 0.1em
+        transition: opacity .3s
     .result-thumb-select-btn
         position: absolute
         bottom: 10px
@@ -228,8 +280,12 @@ body
         color: $col-acc
         letter-spacing: 0.1em
         cursor: pointer
-
-
+        transition: transform .3s
+    .result-img-box:hover
+        &>.result-thumb-close
+            opacity: 0
+        &>.result-thumb-select-btn
+            transform: translateX(-50%) translateY(-100%)
         
 
 
@@ -258,10 +314,12 @@ body
         padding: 1rem
         background-color: #00000088
         color: $light-txt-and-bg
+        transition: opacity .3s
         h4
             position: relative
             padding: 10px 0
             text-align: center
+            transition: opacity .4s
             &:first-child::after
                 @include beforeAfter()
                 width: 50%
@@ -270,20 +328,33 @@ body
                 left: 50%
                 transform: translateX(-50%)
                 background-color: $col-acc
-        .proposal-btn
-            position: relative
-            left: 50%
-            transform: translateX(-50%)
-            margin-top: 1rem
-            padding: 8px 1rem
-            font-size: .8em
-            text-transform: uppercase
-            background: none
-            border: 1px solid $col-acc
-            border-radius: 3px
-            color: $col-acc
-            letter-spacing: .1em
-            font-weight: 700
+    .proposal-btn, .proposal-refresh-btn
+        position: relative
+        left: 50%
+        transform: translateX(-50%)
+        margin-top: 1rem
+        padding: 8px 1rem
+        font-size: .8em
+        text-transform: uppercase
+        background: none
+        border: 1px solid $col-acc
+        border-radius: 3px
+        color: $col-acc
+        letter-spacing: .1em
+        font-weight: 700
+        cursor: pointer
+        transition: transform .3s
+    .proposal-refresh-btn
+        position: absolute
+        top: 0
+        padding: 4px 8px 8px 6px
+        left: 0
+        margin-top: 0
+        transform: translateX(0)
+        border: none
+        font-size: 1.3em
+        background-color: #00000088
+        border-radius: 0 0 30px 0
     h5
         margin: 5px 0
     .chosen-ingr
@@ -301,6 +372,22 @@ body
         margin-top: 10px
         &::first-letter
             font-size: 1.2em
+    .proposal-img-box:hover
+        &>.proposal-refresh-btn
+            background: none
+        &>.proposal-txtinimage
+            background-color: transparent
+            &>h4
+                opacity: 0
+            &>.proposal-btn
+                transform: translateX(-50%) translateY(-100%)
+                background-color: #00000099
+    .chosen-img-box:hover
+        &>.chosen-txtinimage
+            opacity: 0
+                
+
+
 
 // todays random proposal only
 .todays-proposal     

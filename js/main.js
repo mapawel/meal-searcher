@@ -95,33 +95,61 @@ const prepareEvents = () => {
     })
 }
 
+// const searchMeal = () => {
+//     $searchedMeal = $input.value;
+//     $url = $link + $searchedMeal;
+//     axios.get($url)
+//         .then(res => {
+//             $content = res.data.meals;
+//             console.log($content);
+//             clearResultsList();
+//             $mealId = 0;
+//             if ($content) {
+//                 $content.forEach(addResult)
+//             } else {
+//                 wrongSearch();
+//             }
+//         })
+//         .catch(err => console.log('! ! ERROR ! !' + err))
+// }
 
-const searchMeal = () => {
-    $searchedMeal = $input.value;
-    $url = $link + $searchedMeal;
-    axios.get($url)
-        .then(res => {
-            $content = res.data.meals;
-            console.log($content);
-            clearResultsList();
-            $mealId = 0;
-            if ($content) {
-                $content.forEach(addResult)
-            } else {
-                wrongSearch();
-            }
-        })
-        .catch(err => console.log('! ! ERROR ! !' + err))
+async function searchMeal() {
+    try {
+        $searchedMeal = $input.value;
+        $url = $link + $searchedMeal;
+        res = await axios.get($url);
+        $content = res.data.meals;
+        clearResultsList();
+        $mealId = 0;
+        if ($content) {
+            $content.forEach(addResult)
+        } else {
+            wrongSearch();
+        }
+    } catch (err) {
+        console.log(err)
+    }
 }
 
-const getRandomProp = () => {
-    axios.get($urlRandom)
-        .then(res => {
-            $randomMeal = res.data.meals;
-            displayRandomMeal();
-            console.log($randomMeal);
-        })
-        .catch(err => console.log('! ! ERROR ! !' + err))
+// const getRandomProp = () => {
+//     axios.get($urlRandom)
+//         .then(res => {
+//             $randomMeal = res.data.meals;
+//             displayRandomMeal();
+//             console.log($randomMeal);
+//         })
+//         .catch(err => console.log('! ! ERROR ! !' + err))
+// }
+
+
+async function getRandomProp() {
+    try {
+        res = await axios.get($urlRandom);
+        $randomMeal = res.data.meals;
+        displayRandomMeal();
+    } catch (err) {
+        console.log(err)
+    }
 }
 
 const clearResultsList = () => {

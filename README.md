@@ -1,6 +1,6 @@
 # TODAY'S MEAL SEARCHER
 
-> * :warning: One of my very early projects completed during my front-end and basic JavaScript learning. Since that time, I have gained a lot of skills, and today it would look completely different :see_no_evil: I leave the code in the repository as a trace of my learning process from 2020 for comparison with current projects. *
+> :warning: One of my very early projects completed during my front-end and basic JavaScript learning. Since that time, I have gained a lot of skills, and today it would look completely different :see_no_evil: I leave the code in the repository as a trace of my learning process from 2020 for comparison with current projects.
 
 ### Single Page App, Response Web Design, static HTML
 **The goal** was to create simple Single Paga App with use of VanillaJS only and to play with a free public API.
